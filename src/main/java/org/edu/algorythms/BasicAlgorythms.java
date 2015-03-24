@@ -11,11 +11,11 @@ public class BasicAlgorythms {
         int a = 8;
         int b = 5;
 
-        swap(a, b);
+        swapTwoInts(a, b);
 
     }
 
-    static void swap(int a, int b) {
+    static void swapTwoInts(int a, int b) {
 
         System.out.print("a: " +  a);
         System.out.println(" b: " + b);
