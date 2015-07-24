@@ -13,6 +13,9 @@ public class BasicAlgorythms {
 
         swapTwoInts(a, b);
 
+        System.out.print("! a: " + a);
+        System.out.println("! b: " + b);
+
     }
 
     static void swapTwoInts(int a, int b) {
