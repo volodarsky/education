@@ -11,11 +11,11 @@ public class InterruptingTests {
     public static void main(String[] args) {
         InterruptingTests interruptingTests = new InterruptingTests();
         interruptingTests.interruptedThread();
-
     }
 
     public void interruptedThread(){
 
+        ThreadLocal<Long> l = new ThreadLocal<>();
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
