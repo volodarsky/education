@@ -14,14 +14,13 @@ public class Palindrome {
         }
 
         char[] chars = str.toCharArray();
-
-        for (int i = 0,j = str.length() - 1; i <= j; i++,j--){
+        for (int i = 0, j = str.length() - 1; i <= j; i++, j--) {
             while (!Character.isAlphabetic(chars[i]) && i < j) i++;
             while (!Character.isAlphabetic(chars[j]) && i < j) j--;
 
-            if(i > j || ((i == j) && !Character.isAlphabetic(chars[i]))) return false;
+            if (i > j || ((i == j) && !Character.isAlphabetic(chars[i]))) return false;
 
-            if(Character.toLowerCase(chars[i]) != Character.toLowerCase(chars[j])){
+            if (Character.toLowerCase(chars[i]) != Character.toLowerCase(chars[j])) {
                 return false;
             }
         }
@@ -37,13 +36,15 @@ public class Palindrome {
         assert !isPalindrome("  ");
         assert !isPalindrome("");
         assert !isPalindrome(" ");
+        assert !isPalindrome(null);
+        assert !isPalindrome(" ab");
+        assert !isPalindrome(" a b ");
         assert isPalindrome(" a");
         assert isPalindrome("a ");
         assert isPalindrome(" a ");
         assert isPalindrome("  a ");
         assert isPalindrome("a b a ");
         assert isPalindrome(" a b   a");
-
 
 
     }

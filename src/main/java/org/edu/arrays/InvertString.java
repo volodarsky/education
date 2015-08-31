@@ -1,5 +1,10 @@
 package org.edu.arrays;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
 import java.util.Objects;
 
 /**
@@ -9,15 +14,21 @@ import java.util.Objects;
  */
 public class InvertString {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         String str;
+        System.out.println(Charset.defaultCharset());
+
+        PrintStream out = new PrintStream(System.out, true, Charset.defaultCharset().displayName());
+        System.setOut(out);
+        //System.setProperty()
         if (args.length > 0) {
             str = args[0];
         }else{
-            str = " this is a test string";
+            str = "это тестовая строка";
         }
 
-        System.out.println(invert(str));
+
+        out.println(invert(str));
 
     }
 
@@ -25,24 +36,26 @@ public class InvertString {
 
         Objects.requireNonNull(str);
 
-        char[] chars = str.toCharArray();
+        byte[] bytes = str.getBytes();//toCharArray();
+
+        System.out.println(bytes.length);
 
         char tmp;
-        for (int i = 0, j = chars.length - 1; i < j; i++, j--) {
-            /*tmp = chars[i];
-            chars[i] = chars[j];
-            chars[j] = tmp;*/
+        for (int i = 0, j = bytes.length - 1; i < j; i++, j--) {
+            /*tmp = bytes[i];
+            bytes[i] = bytes[j];
+            bytes[j] = tmp;*/
 
-            swap(chars, i, j);
+            swap(bytes, i, j);
         }
 
-        return new String(chars);  //To change body of created methods use File | Settings | File Templates.
+        return new String(bytes);  //To change body of created methods use File | Settings | File Templates.
     }
 
-    private static void swap(char[] chars, int i, int j) {
-        chars[i] ^= chars[j];
-        chars[j] ^= chars[i];
-        chars[i] ^= chars[j];
+    private static void swap(byte[] bytes, int i, int j) {
+        bytes[i] ^= bytes[j];
+        bytes[j] ^= bytes[i];
+        bytes[i] ^= bytes[j];
     }
 
 

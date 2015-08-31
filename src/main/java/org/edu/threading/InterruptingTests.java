@@ -24,6 +24,7 @@ public class InterruptingTests {
                     synchronized (this){
 
                         try {
+                            Thread.currentThread().sleep(1000);
                             wait(1000);
                         } catch (InterruptedException e) {
                             boolean interrupted = Thread.currentThread().isInterrupted();
