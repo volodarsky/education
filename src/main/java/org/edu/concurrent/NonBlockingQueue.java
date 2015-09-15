@@ -5,7 +5,6 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @author vladimir.romanov
  * @version 1.0
- * @since UP...
  */
 public class NonBlockingQueue<V> {
 
@@ -13,7 +12,7 @@ public class NonBlockingQueue<V> {
     private AtomicReference<Node<V>> tail;
 
     public NonBlockingQueue() {
-        head = tail = new AtomicReference<>(new Node<>(null,null));
+        head = tail = new AtomicReference<>(new Node<>(null, null));
     }
 
     static class Node<V> {
@@ -27,43 +26,41 @@ public class NonBlockingQueue<V> {
         }
     }
 
-    public boolean push(V value){
+    public boolean push(V value) {
 
         final Node<V> newNode = new Node<>(value, null);
 
         final Node<V> currTail = tail.get();
         final Node<V> residue = currTail.next.get();
 
-        while (true){
+        while (true) {
             if (currTail == tail.get()) {
-                if(residue == null){
-                    if(currTail.next.compareAndSet(null,newNode)){
-                        tail.compareAndSet(currTail,newNode);
+                if (residue == null) {
+                    if (currTail.next.compareAndSet(null, newNode)) {
+                        tail.compareAndSet(currTail, newNode);
                         return true;
                     }
-                }else{
+                } else {
                     tail.compareAndSet(currTail, residue);
                 }
             }
         }
     }
 
-    public V pop(){
-
+    public V pop() {
         Node<V> oldHead;
         Node<V> newHead;
 
-        do{
+        do {
             oldHead = head.get();
-            if(oldHead.value == null){
+            if (oldHead.value == null) {
                 return null;
             }
             newHead = oldHead.next.get();
-        }while(!head.compareAndSet(oldHead, newHead));
+        } while (!head.compareAndSet(oldHead, newHead));
 
         return oldHead.value;
     }
-
 
 
 }
