@@ -11,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author vladimir.romanov
  * @version 1.0
- * @since UP...
  */
 public class ZeroHashCode {
 

@@ -14,14 +14,14 @@ public class Overload {
         System.out.println("String");
     }
 
-    public void method(StringBuffer sb) {
+    public void method(CharSequence sb) {
         System.out.println("StringBuffer");
     }
 
     public static void main(String args[]) {
         Overload test = new Overload();
         //not compiled
-        //test.method(null);
+        test.method(null);
     }
 }
 
